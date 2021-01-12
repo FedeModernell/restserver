@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 const app = express();
 const Usuario = require('../modelo/usuario');
 const _ = require('underscore');
-const usuario = require('../modelo/usuario');
 
+const FuncToken = require('../../middlewares/autenticacion')
 
-app.get('/usuario', function(req, res) {
+app.get('/usuario', FuncToken.autenticacion, (req, res) => {
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -37,7 +37,7 @@ app.get('/usuario', function(req, res) {
         })
 });
 
-app.post('/usuario', function(req, res) {
+app.post('/usuario', [FuncToken.autenticacion, FuncToken.VerificaAdminRol], (req, res) => {
 
     let body = req.body;
 
@@ -70,7 +70,7 @@ app.post('/usuario', function(req, res) {
 
 });
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [FuncToken.autenticacion, FuncToken.VerificaAdminRol], (req, res) => {
 
 
     let id = req.params.id;
