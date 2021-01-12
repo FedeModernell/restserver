@@ -5,7 +5,8 @@ let esquema = mongoose.Schema;
 let rolesvalidos = {
     values: [
         'ADMIN',
-        'SUPER'
+        'SUPER',
+        'USER_ROL'
 
     ],
     message: '{VALUE} no es un rol valido'
