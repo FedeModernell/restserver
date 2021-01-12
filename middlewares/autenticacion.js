@@ -14,7 +14,7 @@ let autenticacion = (req, res, next) => {
                 err
             })
         }
-
+        console.log(decoded.usuario);
         req.usuario = decoded.usuario; //Devuelve el paylot, todo lo que quisite enviar
         next();
     })

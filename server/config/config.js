@@ -23,7 +23,7 @@ if (process.env.NODE_ENV == 'dev') {
 // ============================
 //  VENCIMIENTO TOKEN
 // ============================
-process.env.CADUCIDAD = 60 * 60 * 24 * 30;
+process.env.CADUCIDAD = '48h';
 
 // ============================
 //  SEED
