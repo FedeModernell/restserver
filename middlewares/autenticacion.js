@@ -22,6 +22,26 @@ let autenticacion = (req, res, next) => {
 
 }
 
+
+let autenticacionimg = (req, res, next) => {
+
+    let token = req.query.token;
+    //Valida la semilla
+    jwt.verify(token, process.env.SEED, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({
+                ok: false,
+                err
+            })
+        }
+        console.log(decoded.usuario);
+        req.usuario = decoded.usuario; //Devuelve el paylot, todo lo que quisite enviar
+        next();
+    })
+
+
+}
+
 let VerificaAdminRol = (req, res, next) => {
 
     let usuario = req.body;
@@ -44,4 +64,4 @@ let VerificaAdminRol = (req, res, next) => {
 
 
 
-module.exports = { autenticacion, VerificaAdminRol };
+module.exports = { autenticacion, VerificaAdminRol, autenticacionimg };
